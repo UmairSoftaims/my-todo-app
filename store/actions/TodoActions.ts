@@ -16,7 +16,7 @@ export const getTodos: GetTodos = () => async (dispatch) => {
 
 //done
 export const addTodo: AddTodo = (todo) => async (dispatch) => {
-  let res = await axios.post('todos', { name: todo, complete: false });
+  let res = await axios.post('/api/todos', { name: todo, complete: false });
   console.log(res)
   dispatch({
     type: ADD_TODO,
