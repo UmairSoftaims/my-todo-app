@@ -1,10 +1,10 @@
 import { ADD_TODO, GET_TODOS, TOGGLE_TODO, EDIT_TODO, DELETE_TODO, SET_FILTER, SEARCH_TODOS, GetTodos, AddTodo, ToggleTodo, EditTodo, DeleteTodo } from "../types/TodoTypes";
 import axios from 'axios';
-
 // define action creators
 //done
 export const getTodos: GetTodos = () => async (dispatch) => {
-  const res = await axios.get('http://localhost:3000/api/todos');
+    console.log(process.env.API_URL)
+  const res = await axios.get(`/api/todos`);
   console.log(res)
   dispatch({
     type: GET_TODOS,
@@ -16,7 +16,7 @@ export const getTodos: GetTodos = () => async (dispatch) => {
 
 //done
 export const addTodo: AddTodo = (todo) => async (dispatch) => {
-  let res = await axios.post('http://localhost:3000/api/todos', { name: todo, complete: false });
+  let res = await axios.post('todos', { name: todo, complete: false });
   console.log(res)
   dispatch({
     type: ADD_TODO,
@@ -28,7 +28,7 @@ export const addTodo: AddTodo = (todo) => async (dispatch) => {
 
 //done
 export const toggleTodo: ToggleTodo = (index) => async (dispatch) => {
-  const res = await axios.put(`http://localhost:3000/api/todos/${index}/toggle`);
+  const res = await axios.put(`/api/todos/${index}/toggle`);
   console.log(res)
   dispatch({
     type: TOGGLE_TODO,
@@ -40,7 +40,7 @@ export const toggleTodo: ToggleTodo = (index) => async (dispatch) => {
 
 // done
 export const editTodo: EditTodo = (index: number, name: string) => async (dispatch) => {
-  let res = await axios.put(`http://localhost:3000/api/todos/${index}`, { name });
+  let res = await axios.put(`/api/todos/${index}`, { name });
   console.log(res)
   dispatch({
     type: EDIT_TODO,
@@ -53,7 +53,7 @@ export const editTodo: EditTodo = (index: number, name: string) => async (dispat
 
 // done
 export const deleteTodo: DeleteTodo = (index) => async (dispatch) => {
-  let res = await axios.delete(`http://localhost:3000/api/todos/${index}`);
+  let res = await axios.delete(`/api/todos/${index}`);
   console.log(res)
   dispatch({
     type: DELETE_TODO,
